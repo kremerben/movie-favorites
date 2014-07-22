@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" > <!--<![endif]-->
+<head lang="en">
+    {% load staticfiles %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{%  block title %}{% endblock %}Rotten Potatoes</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+{#    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">#}
+{#    <link href='http://fonts.googleapis.com/css?family=Amaranth' rel='stylesheet' type='text/css'>#}
+{#    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" />#}
+{#    <script src="{% static 'js/jquery-1.11.1.js' %}"></script>#}
+    <link rel="stylesheet" href="{% static 'css/index.css' %}" type="text/css"  />
+{#	<script src="{% static 'js/ajax_get_index.js' %}"></script>#}
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script src="{% static 'js/index.js' %}"></script>
+
+
+    {% block head %}{% endblock %}
+</head>
+<body>
+{% block nav %}
+<nav class="navbar navbar-default">
+    <ul class="nav navbar-nav">
+{#        <li><a href="{% url "home" %}"> Home</a>#}
+    </ul>
+</nav>
+{% endblock %}
+<hr>
+{% block content %}
+<input type=search name=s id="searchBox" >
+<button id="searchMovie">
+    Search
+</button>
+++
+    <button id="getMovie">
+    Get a movie
+</button>
+    ++
+<button id="saveMovie">
+    Save this movie
+</button>
+    <hr>
+    <div id="gotTheMovie"></div>
+    <div class="movieInfoContainer"></div>
+{% endblock %}
+
+
+<hr>
+
+
+{% block subnav %}
+
+{% endblock %}
+
+
+{% block footer %}
+    <footer>
+
+
+    </footer>
+{% endblock %}
+</body>
+</html>
