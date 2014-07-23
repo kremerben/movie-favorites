@@ -31,6 +31,7 @@ def new_movie(request):
         #     audience_score=data['audience_score']
         # )
         movie_info = {
+            'movie_info': {
             'title': data['title'],
             'release_year': data['release_year'],
             'critic_rating': data['critic_rating'],
@@ -39,6 +40,7 @@ def new_movie(request):
             'mpaa_rating': data['mpaa_rating'],
             'index': data['index'],
             'runtime': runtime
+        },
         }
         # movie_info = [movie_info]
         # return HttpResponse(json.dumps(movie_info), content_type='application/json')
