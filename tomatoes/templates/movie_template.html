@@ -1,8 +1,9 @@
 <div class="movieInfo row">
-    <div class="col-md-3 movie_thumb"><img src="{{ movie_info.poster }}" /><br><br>
-    <button id="favorite" data-id="{{ movie_info.index }}" >
+    <div class="col-md-3 movie_thumb"><img src="{{ movie_info.poster }}" /><br>
+    <button id="favorite" data-id="{{ movie_info.index }}" type="button" class="btn btn-default btn-lg">
     Favorite This Movie
 </button>
+  <span class="glyphicon glyphicon-star"></span>
         <div class="multiSave">
             <label >Multi-Save</label>
             <input type="checkbox" id="{{movie_info.index}}">

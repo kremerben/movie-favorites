@@ -53,10 +53,14 @@ button {
 
 
 .movieInfo {
-    border: 2px solid black;
+    border: 2px solid gray;
     margin:10px;
     padding:10px;
     border-color:darkred gray;
+}
+
+#favoriteBox {
+    display: none;
 }
 
 #favoriteBox .movieInfo #favorite, #favoriteBox .multiSave {
@@ -74,6 +78,7 @@ button {
 .synopsis {
     max-height: 70px;
     overflow: hidden;
+    margin-bottom: 0;
 }
 
 #gotTheMovie {
@@ -85,24 +90,6 @@ button {
     margin: 10px;
 }
 
-.rainbow {
-/*mozilla rainbow gradient*/
-background-image: -moz-linear-gradient( left bottom , right bottom ,
-  		from(red),
-        color-stop(16%, orange),
-        color-stop(32%, yellow),
-   		color-stop(48%, green),
-        color-stop(60%, blue),
-		color-stop(76%, indigo),
-		to(violet));
-
-/*webkit rainbow gradient*/
-background-image: -webkit-gradient(linear,  left bottom ,  right bottom,
-		color-stop(0.00, red),
-		color-stop(16%, orange),
-		color-stop(32%, yellow),
-		color-stop(48%, green),
-		color-stop(60%, blue),
-		color-stop(76%, indigo),
-		color-stop(1.00, violet));
+.synopsis + hr {
+    margin-top:0;
 }
