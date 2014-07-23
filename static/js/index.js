@@ -70,6 +70,7 @@ $('#saveMovie').on('click', function() {
 
 var currentSearch = [];
 $('#searchMovie').on('click', function() {
+    currentSearch = [];
     var searchString = $('#searchBox').val();
     $('.movieInfoContainer').empty();
     $.ajax({
@@ -79,10 +80,10 @@ $('#searchMovie').on('click', function() {
         type: 'GET',
         dataType: 'jsonp',
         success: function(movie_response) {
-            console.log(movie_response);
-            console.log('hello');
-            console.log(movie_response.movies);
+//            console.log(movie_response);
+//            console.log(movie_response.movies);
             $.each(movie_response.movies, function(index, movie) {
+                movieInfo = {};
                 movieInfo.title = movie.title;
                 movieInfo.release_year = movie.year;
                 movieInfo.critic_rating = movie.ratings.critics_score;
@@ -90,32 +91,39 @@ $('#searchMovie').on('click', function() {
                 movieInfo.mpaa_rating = movie.mpaa_rating;
                 movieInfo.runtime = movie.runtime;
                 movieInfo.poster = movie.posters.original;
-
-                postMovie(movieInfo);
+                movieInfo.index = index;
                 currentSearch.push(movieInfo);
+                console.log('aaa-current search');
                 console.log(currentSearch);
+                postMovie(movieInfo);
             });
         },
         error: function(error_response) {
             console.log(error_response);
         }
     });
+    console.log('current search');
+    console.log(currentSearch);
 });
 
 var postMovie = function(movieInfo) {
 
     movieInfo = JSON.stringify(movieInfo);
-//    console.log("a" + movieInfo);
+    console.log("a" + movieInfo);
     $.ajax({
         url: '/new_movie/',
         type: 'POST',
         dataType: 'html',
         data: movieInfo,
         success: function (movie_response) {
-//            console.log(movie_response);
+            console.log('b'+ movie_response);
             $('.movieInfoContainer').append(movie_response);
 
+        },
+        error: function(error_response) {
+            console.log(error_response);
         }
+
     });
 };
 
@@ -126,8 +134,26 @@ $(document).on('click', '#moreInfo', function() {
 
 
 $(document).on('click', '#favorite', function() {
-    $(this).siblings('.moreInfoBox').toggle();
+    var thisOne = $(this);
+    fave_index = thisOne.data('id');
+    movieInfo = JSON.stringify(currentSearch[fave_index]);
+//    console.log("a" + movieInfo);
+
+    $.ajax({
+        url: '/favorite_movie/',
+        type: 'POST',
+        dataType: 'html',
+        data: movieInfo,
+        success: function (movie_response) {
+            console.log(movie_response);
+            thisOne.hide();
+            thisOne.parent('div').appendTo('#favoriteBox');
+        }
+    });
+
 });
+
+
 
 
 

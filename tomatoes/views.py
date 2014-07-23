@@ -7,7 +7,11 @@ from django.views.decorators.csrf import csrf_exempt
 from models import Movie
 
 def home(request):
-    return render(request, 'tomatoes_base.html')
+    favorites = Movie.objects.all()
+    data = {
+        'favorites': favorites
+    }
+    return render(request, 'tomatoes_base.html', data)
 
 @csrf_exempt
 def new_movie(request):
@@ -17,15 +21,15 @@ def new_movie(request):
             runtime = 10
         else:
             runtime = data['runtime']
-        new_movie = Movie.objects.create(
-            title=data['title'],
-            release_year=data['release_year'],
-            critic_rating=data['critic_rating'],
-            poster=data['poster'],
-            mpaa_rating=data['mpaa_rating'],
-            runtime=runtime,
-            audience_score=data['audience_score']
-        )
+        # new_movie = Movie.objects.create(
+        #     title=data['title'],
+        #     release_year=data['release_year'],
+        #     critic_rating=data['critic_rating'],
+        #     poster=data['poster'],
+        #     mpaa_rating=data['mpaa_rating'],
+        #     runtime=runtime,
+        #     audience_score=data['audience_score']
+        # )
         movie_info = {
             'title': data['title'],
             'release_year': data['release_year'],
@@ -33,8 +37,10 @@ def new_movie(request):
             'audience_score': data['audience_score'],
             'poster': data['poster'],
             'mpaa_rating': data['mpaa_rating'],
+            'index': data['index'],
             'runtime': runtime
         }
+        # movie_info = [movie_info]
         # return HttpResponse(json.dumps(movie_info), content_type='application/json')
         return render_to_response('movie_template.html', movie_info)
 

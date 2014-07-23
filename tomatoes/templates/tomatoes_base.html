@@ -47,6 +47,14 @@
     <hr>
     <div id="gotTheMovie"></div>
     <div class="movieInfoContainer"></div>
+
+
+    <hr>
+    <div id="favoriteBox"><h2>Favorites</h2></div>
+{% for fave in favorites %}
+    {% include 'movie_template.html' with movie_info=fave %}
+{% endfor %}
+
 {% endblock %}
 
 

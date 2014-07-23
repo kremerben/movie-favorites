@@ -1,21 +1,26 @@
+{#{% for movie in movie_info %}#}
 <div class="movieInfo">
-    <img src="{{ poster }}" />
-    <h1>{{ title }}</h1>
-    <p>Release Year: {{ release_year }}</p>
-    <p>Critic Rating: {{ critic_rating }}<br>
-        Audience Rating: {{ audience_score }}
+    <img src="{{ movie_info.poster }}" />
+    <h1>{{ movie_info.title }}</h1>
+    <p>Release Year: {{ movie_info.release_year }}</p>
+    <p>Critic Rating: {{ movie_info.critic_rating }}<br>
+        Audience Rating: {{ movie_info.audience_score }}
 </p>
-    <button id="favorite">
+<button id="favorite" data-id="{{ movie_info.index }}">
     Favorite This Movie
 </button>
+{#<button id="favorite" data-id="{{ movie.index }}">#}
+{#    Favorite This Movie#}
+{#</button>#}
 
 
 <button id="moreInfo">
     More Information
 </button>
     <div class="moreInfoBox" style="display:none;" >
-    <p>mpaa rating: {{ mpaa_rating }}</p>
-    <p>Run Time: {{ runtime }}</p>
-{#    <p>Synopsis: {{ synopsis }}</p>#}
+    <p>mpaa rating: {{ movie_info.mpaa_rating }}</p>
+    <p>Run Time: {{ movie_info.runtime }}</p>
+{#    <p>Synopsis: {{ movie_info.synopsis }}</p>#}
     </div>
 </div>
+{#{% endfor %}#}
