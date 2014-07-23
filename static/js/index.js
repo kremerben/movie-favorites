@@ -8,7 +8,7 @@ var movieInfo = {};
 
 
 // SEARCH FOR A MOVIE - RETURN 10
-var currentSearch = [];
+currentSearch = [];
 $('#searchMovie').on('click', function() {
     currentSearch = [];
     var searchString = $('#searchBox').val();
@@ -84,7 +84,10 @@ $(document).on('click', '#moreInfo', function() {
 // SAVE FAVORITE
 $(document).on('click', '#favorite', function() {
     var thisOne = $(this);
-    fave_index = thisOne.data('id');
+    var fave_index = thisOne.data('id');
+    console.log('a'+ currentSearch);
+    console.log('b'+ fave_index);
+    console.log(currentSearch[fave_index]);
     movieInfo = JSON.stringify(currentSearch[fave_index]);
     $.ajax({
         url: '/favorite_movie/',
@@ -97,6 +100,7 @@ $(document).on('click', '#favorite', function() {
             thisOne.parent().parent().appendTo('#favoriteBox');
         }
     });
+    $('#favoriteBox').show();
 });
 
 // REMOVE FAVORITE

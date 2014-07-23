@@ -1,0 +1,31 @@
+{% extends "tomatoes_base.html" %}
+    {% load staticfiles %}
+
+
+{% block head %}
+	<script src="{% static 'js/tinder.js' %}"></script>
+{% endblock %}
+
+
+{% block content %}
+<input type=search name=s id="relatedMovieSearchInput"  >
+<button id="relatedMovieSearch" class="btn btn-default btn-lg">
+    Find Related Movies
+</button>
+<button id="showFavorites" class="btn btn-default btn-lg">Show Favorites</button>
+
+<div id='relatedMovies' class="movieInfoContainer"></div>
+
+
+    <div id="favoriteBox">
+            <hr>
+<h2>Favorites</h2>
+{% for fave in favorites %}
+    {% include 'movie_template.html' with movie_info=fave %}
+{% endfor %}
+</div>
+
+
+{% endblock %}
+
+

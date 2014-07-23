@@ -13,6 +13,13 @@ def home(request):
     }
     return render(request, 'tomatoes_base.html', data)
 
+def tinder(request):
+    favorites = Movie.objects.all()
+    data = {
+        'favorites': favorites,
+    }
+    return render(request, 'tinder.html', data)
+
 
 @csrf_exempt
 def new_movie(request):
