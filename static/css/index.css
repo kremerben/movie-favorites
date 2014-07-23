@@ -1,7 +1,12 @@
 body {
-    font-family: Amaranth, Helvetica, sans-serif;
+    font-family: Rokkitt, Helvetica, sans-serif;
+    font-weight: 400;
+    font-size: 1.9em;
 }
 
+strong {
+    font-weight: 700;
+}
 
 #box {
 	/*height: 300px;*/
@@ -24,81 +29,8 @@ h3 {
 }
 
 button {
-	margin: 10px;
+	margin: 10px 0;
 	text-align: center;
-}
-
-.pokemon, .specialTeam {
-        margin-top: 30px ;
-    color:white;
-}
-
-.specialTeam {
-margin-top: 0px ;
-    color: #000000;
-background-color: #e7ecff;
-}
-
-.pokeChar {
-    /*float: left;*/
-    display: inline-block;
-    position: relative;
-    border: 1px double lightgray;
-    height:170px;
-    width: 170px;
-    vertical-align: top;
-        border-radius: 50%;
-        background: url('../img/pokeball.png') 50% center no-repeat transparent;
-
-}
-
-.pokeChar img {
-    max-width: 100%;
-    max-height: 100%;
-    margin: 0 auto;
-    -webkit-filter: drop-shadow(12px 12px 7px rgba(0,0,0,0.5));
-    color: #FFF;
-}
-
-
-.inactive {
-    /*background-color: orange;*/
-    /*background: url('images/pokeball.png') 50% center no-repeat transparent;*/
-}
-
-.inactive h3, .inactive img {
-    visibility: hidden;
-}
-
-.active {
-    background: transparent;
-}
-.active h3 {
-    color:#000;
-}
-.active::after {
-  content: "";
-  background: url('../img/pokeball.png');
-  opacity: 0.5;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  position: absolute;
-  z-index: -1;
-}
-
-
-.found {
-    pointer-events: none;
-}
-
-.found h3, .found img {
-    visibility: visible;
-}
-
-.pokemon, .pokemonTeam {
-    text-align: center;
 }
 
 .narrow {
@@ -119,58 +51,58 @@ background-color: #e7ecff;
     text-align: center;
 }
 
-.found
-{
-  -webkit-animation: glow 500ms ease-in-out 100ms ;
-  animation: glow 500ms  ease-in-out 100ms;
-}
-
-@-webkit-keyframes glow
-{
-  50% { box-shadow: 0 0 80px #ff581c; }
-}
-
-@keyframes glow
-{
-  50% { box-shadow: 0 0 80px #ff581c; }
-}
-
-
-.special::after {
-  content: "";
-  background: url('../img/lebowski/bowlingball.jpg');
-  opacity: 0.5;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  position: absolute;
-  z-index: -1;
-}
-
-.special {
-    background: url('../img/lebowski/bowlingball.jpg') 50% center no-repeat transparent;
-}
-
-.specialBox {
-            background: url('../img/lebowski/rug-1.jpg') 50% center transparent;
-
-}
 
 .movieInfo {
-    border: 1px solid black;
+    border: 2px solid black;
     margin:10px;
     padding:10px;
+    border-color:darkred gray;
 }
 
-#favoriteBox .movieInfo #favorite {
+#favoriteBox .movieInfo #favorite, #favoriteBox .multiSave {
     display: none;
 }
 
-.movieInfoContainer #removeFave {
+.movieInfoContainer #removeFave, #multi-save {
     display: none;
 }
 
 .movie_thumb {
     text-align: center;
+}
+
+.synopsis {
+    max-height: 70px;
+    overflow: hidden;
+}
+
+#gotTheMovie {
+    text-align: center;
+}
+
+#searchBox {
+    font-size: 1.1em;
+    margin: 10px;
+}
+
+.rainbow {
+/*mozilla rainbow gradient*/
+background-image: -moz-linear-gradient( left bottom , right bottom ,
+  		from(red),
+        color-stop(16%, orange),
+        color-stop(32%, yellow),
+   		color-stop(48%, green),
+        color-stop(60%, blue),
+		color-stop(76%, indigo),
+		to(violet));
+
+/*webkit rainbow gradient*/
+background-image: -webkit-gradient(linear,  left bottom ,  right bottom,
+		color-stop(0.00, red),
+		color-stop(16%, orange),
+		color-stop(32%, yellow),
+		color-stop(48%, green),
+		color-stop(60%, blue),
+		color-stop(76%, indigo),
+		color-stop(1.00, violet));
 }

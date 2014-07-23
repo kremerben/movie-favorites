@@ -22,16 +22,19 @@ def new_movie(request):
             runtime = 10
         else:
             runtime = data['runtime']
-            movie_info = {
-                'movie_info': {
-                'title': data['title'],
-                'release_year': data['release_year'],
-                'critic_rating': data['critic_rating'],
-                'audience_score': data['audience_score'],
-                'poster': data['poster'],
-                'mpaa_rating': data['mpaa_rating'],
-                'index': data['index'],
-                'runtime': runtime
+        poster = data['poster'].replace('tmb', 'det')
+        movie_info = {
+            'movie_info': {
+            'title': data['title'],
+            'rt_id': data['rt_id'],
+            'release_year': data['release_year'],
+            'critic_rating': data['critic_rating'],
+            'audience_score': data['audience_score'],
+            'poster': poster,
+            'mpaa_rating': data['mpaa_rating'],
+            'index': data['index'],
+            'synopsis': data['synopsis'],
+            'runtime': runtime
             },
         }
         # movie_info = [movie_info]
@@ -47,26 +50,68 @@ def favorite_movie(request):
             runtime = 10
         else:
             runtime = data['runtime']
+        poster = data['poster'].replace('tmb', 'det')
         new_movie = Movie.objects.create(
             title=data['title'],
+            rt_id=data['rt_id'],
             release_year=data['release_year'],
             critic_rating=data['critic_rating'],
-            poster=data['poster'],
+            poster=poster,
             mpaa_rating=data['mpaa_rating'],
             runtime=runtime,
-            audience_score=data['audience_score']
+            audience_score=data['audience_score'],
+            synopsis=data['synopsis']
         )
         movie_info = {
             'title': new_movie.title,
+            'rt_id': new_movie.rt_id,
             'release_year': new_movie.release_year,
             'critic_rating': new_movie.critic_rating,
             'audience_score': new_movie.audience_score,
             'poster': new_movie.poster,
             'mpaa_rating': new_movie.mpaa_rating,
+            'synopsis': new_movie.synopsis,
+            'index': data['index'],
             'runtime': new_movie.runtime
         }
         # return HttpResponse(json.dumps(movie_info), content_type='application/json')
         return render_to_response('movie_template.html', movie_info)
+
+@csrf_exempt
+def bulk_favorite_movie(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        if data['runtime'] == "":
+            runtime = 10
+        else:
+            runtime = data['runtime']
+        poster = data['poster'].replace('tmb', 'det')
+        new_movie = Movie.objects.create(
+            title=data['title'],
+            rt_id=data['rt_id'],
+            release_year=data['release_year'],
+            critic_rating=data['critic_rating'],
+            poster=poster,
+            mpaa_rating=data['mpaa_rating'],
+            runtime=runtime,
+            audience_score=data['audience_score'],
+            synopsis=data['synopsis']
+        )
+        movie_info = {
+            'title': new_movie.title,
+            'rt_id': new_movie.rt_id,
+            'release_year': new_movie.release_year,
+            'critic_rating': new_movie.critic_rating,
+            'audience_score': new_movie.audience_score,
+            'poster': new_movie.poster,
+            'mpaa_rating': new_movie.mpaa_rating,
+            'synopsis': new_movie.synopsis,
+            'index': data['index'],
+            'runtime': new_movie.runtime
+        }
+        # return HttpResponse(json.dumps(movie_info), content_type='application/json')
+        return render_to_response('movie_template.html', movie_info)
+
 
 
 @csrf_exempt

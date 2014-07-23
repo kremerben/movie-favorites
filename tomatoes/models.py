@@ -12,7 +12,7 @@ class Movie(models.Model):
     runtime = models.SmallIntegerField(null=True, blank=True)
     audience_score = models.SmallIntegerField(null=True, blank=True)
     synopsis = models.TextField(null=True, blank=True)
-    rt_id = models.SmallIntegerField(null=True, blank=True)
+    rt_id = models.IntegerField(null=True, blank=True)
 
 
     def __unicode__(self):
@@ -21,7 +21,8 @@ class Movie(models.Model):
 
 class Actor(models.Model):
     name = models.CharField(max_length=120)
-    movie = models.ForeignKey(Movie, null=True, blank=True)
+    rt_id = models.IntegerField(null=True, blank=True)
+    movie = models.ForeignKey(Movie, null=True, blank=True, related_name='movie')
 
     def __unicode__(self):
         return self.name
