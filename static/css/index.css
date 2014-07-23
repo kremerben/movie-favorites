@@ -1,4 +1,5 @@
 body {
+    font-family: Amaranth, Helvetica, sans-serif;
 }
 
 
@@ -157,9 +158,19 @@ background-color: #e7ecff;
 }
 
 .movieInfo {
-    display: inline-block;
     border: 1px solid black;
     margin:10px;
     padding:10px;
 }
 
+#favoriteBox .movieInfo #favorite {
+    display: none;
+}
+
+.movieInfoContainer #removeFave {
+    display: none;
+}
+
+.movie_thumb {
+    text-align: center;
+}

@@ -9,9 +9,10 @@ from models import Movie
 def home(request):
     favorites = Movie.objects.all()
     data = {
-        'favorites': favorites
+        'favorites': favorites,
     }
     return render(request, 'tomatoes_base.html', data)
+
 
 @csrf_exempt
 def new_movie(request):
@@ -21,26 +22,17 @@ def new_movie(request):
             runtime = 10
         else:
             runtime = data['runtime']
-        # new_movie = Movie.objects.create(
-        #     title=data['title'],
-        #     release_year=data['release_year'],
-        #     critic_rating=data['critic_rating'],
-        #     poster=data['poster'],
-        #     mpaa_rating=data['mpaa_rating'],
-        #     runtime=runtime,
-        #     audience_score=data['audience_score']
-        # )
-        movie_info = {
-            'movie_info': {
-            'title': data['title'],
-            'release_year': data['release_year'],
-            'critic_rating': data['critic_rating'],
-            'audience_score': data['audience_score'],
-            'poster': data['poster'],
-            'mpaa_rating': data['mpaa_rating'],
-            'index': data['index'],
-            'runtime': runtime
-        },
+            movie_info = {
+                'movie_info': {
+                'title': data['title'],
+                'release_year': data['release_year'],
+                'critic_rating': data['critic_rating'],
+                'audience_score': data['audience_score'],
+                'poster': data['poster'],
+                'mpaa_rating': data['mpaa_rating'],
+                'index': data['index'],
+                'runtime': runtime
+            },
         }
         # movie_info = [movie_info]
         # return HttpResponse(json.dumps(movie_info), content_type='application/json')
@@ -84,3 +76,13 @@ def new_movie_info(request, new_movie_id):
         'movie_info': movie_info,
     }
     return render_to_response('movie_template.html', data)
+
+
+@csrf_exempt
+def remove_movie(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        deleteMe = Movie.objects.get(title=data).delete()
+
+        return HttpResponse(json.dumps(deleteMe), content_type='application/json')
+        # return render_to_response('movie_template.html', movie_info)

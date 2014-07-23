@@ -10,8 +10,8 @@
     <title>{%  block title %}{% endblock %}Rotten Potatoes</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-{#    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">#}
-{#    <link href='http://fonts.googleapis.com/css?family=Amaranth' rel='stylesheet' type='text/css'>#}
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link href='http://fonts.googleapis.com/css?family=Amaranth' rel='stylesheet' type='text/css'>
 {#    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" />#}
 {#    <script src="{% static 'js/jquery-1.11.1.js' %}"></script>#}
     <link rel="stylesheet" href="{% static 'css/index.css' %}" type="text/css"  />
@@ -23,10 +23,10 @@
     {% block head %}{% endblock %}
 </head>
 <body>
+<div class="container">
 {% block nav %}
 <nav class="navbar navbar-default">
     <ul class="nav navbar-nav">
-{#        <li><a href="{% url "home" %}"> Home</a>#}
     </ul>
 </nav>
 {% endblock %}
@@ -50,11 +50,11 @@
 
 
     <hr>
-    <div id="favoriteBox"><h2>Favorites</h2></div>
+    <div id="favoriteBox"><h2>Favorites</h2>
 {% for fave in favorites %}
     {% include 'movie_template.html' with movie_info=fave %}
 {% endfor %}
-
+</div>
 {% endblock %}
 
 
@@ -72,5 +72,6 @@
 
     </footer>
 {% endblock %}
+</div>
 </body>
 </html>

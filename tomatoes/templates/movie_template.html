@@ -1,24 +1,27 @@
-<div class="movieInfo">
-    <img src="{{ movie_info.poster }}" />
+<div class="movieInfo row">
+    <div class="col-md-2 movie_thumb"><img src="{{ movie_info.poster }}" /><br><br>
+    <button id="favorite" data-id="{{ movie_info.index }}" >
+    Favorite This Movie
+</button>
+        <button id="removeFave">Remove Favorite</button>
+</div>
+    <div class="col-md-7">
     <h1>{{ movie_info.title }}</h1>
     <p>Release Year: {{ movie_info.release_year }}</p>
     <p>Critic Rating: {{ movie_info.critic_rating }}<br>
         Audience Rating: {{ movie_info.audience_score }}
 </p>
-<button id="favorite" data-id="{{ movie_info.index }}">
-    Favorite This Movie
-</button>
+
+        </div>
 {#<button id="favorite" data-id="{{ movie_info.index }}">#}
 {#    Favorite This Movie#}
 {#</button>#}
-
-
-<button id="moreInfo">
-    More Information
-</button>
+<div class="col-md-3">
+<button id="moreInfo">More Information</button>
     <div class="moreInfoBox" style="display:none;" >
     <p>mpaa rating: {{ movie_info.mpaa_rating }}</p>
     <p>Run Time: {{ movie_info.runtime }}</p>
 {#    <p>Synopsis: {{ movie_info.synopsis }}</p>#}
+        </div>
     </div>
 </div>

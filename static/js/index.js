@@ -47,18 +47,6 @@ $('#saveMovie').on('click', function() {
         success: function(movie_response) {
             console.log(movie_response);
             $('.movieInfoContainer').html(movie_response);
-//            $.ajax({
-//                url: '/new_movie/'+ movie_response.id,
-//                type: 'POST',
-//                dataType: 'html',
-//                data: movieInfo,
-//                success: function(movie_response) {
-//                    $('.movieInfoContainer').html(movie_response);
-//                },
-//                error: function(error_response) {
-//                    console.log(error_response);
-//                }
-//            });
             $('#saveMovie').hide();
         },
         error: function(error_response) {
@@ -93,8 +81,8 @@ $('#searchMovie').on('click', function() {
                 movieInfo.poster = movie.posters.original;
                 movieInfo.index = index;
                 currentSearch.push(movieInfo);
-                console.log('aaa-current search');
-                console.log(currentSearch);
+//                console.log('aaa-current search');
+//                console.log(currentSearch);
                 postMovie(movieInfo);
             });
         },
@@ -102,34 +90,36 @@ $('#searchMovie').on('click', function() {
             console.log(error_response);
         }
     });
-    console.log('current search');
-    console.log(currentSearch);
+//    console.log('current search');
+//    console.log(currentSearch);
 });
 
 var postMovie = function(movieInfo) {
 
     movieInfo = JSON.stringify(movieInfo);
-    console.log("a" + movieInfo);
+//    console.log("a" + movieInfo);
     $.ajax({
         url: '/new_movie/',
         type: 'POST',
         dataType: 'html',
         data: movieInfo,
         success: function (movie_response) {
-            console.log('b'+ movie_response);
+//            console.log('b'+ movie_response);
             $('.movieInfoContainer').append(movie_response);
-
         },
         error: function(error_response) {
             console.log(error_response);
         }
-
     });
 };
 
 
 $(document).on('click', '#moreInfo', function() {
     $(this).siblings('.moreInfoBox').toggle();
+    $(this).text(function(i, text){
+        return text === "More Information" ? "Hide Information" : "More Information";
+    });
+
 });
 
 
@@ -138,7 +128,6 @@ $(document).on('click', '#favorite', function() {
     fave_index = thisOne.data('id');
     movieInfo = JSON.stringify(currentSearch[fave_index]);
 //    console.log("a" + movieInfo);
-
     $.ajax({
         url: '/favorite_movie/',
         type: 'POST',
@@ -147,10 +136,32 @@ $(document).on('click', '#favorite', function() {
         success: function (movie_response) {
             console.log(movie_response);
             thisOne.hide();
-            thisOne.parent('div').appendTo('#favoriteBox');
+            thisOne.parentsUntil('.row div').appendTo('#favoriteBox');
         }
     });
 
+});
+
+
+$(document).on('click', '#removeFave', function() {
+    movieTitle = $(this).siblings('h1').text();
+//    console.log("a" + movieTitle);
+    movieTitle = JSON.stringify(movieTitle);
+    removeMe = $(this).parent('div');
+    console.log("b" + removeMe);
+    $(removeMe).hide();
+    $.ajax({
+        url: '/remove_movie/',
+        type: 'POST',
+        dataType: 'jsonp',
+        data: movieTitle,
+        success: function (movie_response, removeMe) {
+//            console.log('b'+ movie_response);
+        },
+        error: function(error_response) {
+            console.log(error_response);
+        }
+    });
 });
 
 
