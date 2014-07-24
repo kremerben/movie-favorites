@@ -34,6 +34,7 @@ $('#searchMovie').on('click', function() {
                 movieInfo.poster = movie.posters.original;
                 movieInfo.synopsis = movie.synopsis;
                 movieInfo.index = index;
+                movieInfo.actors = movie.abridged_cast;
                 currentSearch.push(movieInfo);
                 postMovie(movieInfo);
             });

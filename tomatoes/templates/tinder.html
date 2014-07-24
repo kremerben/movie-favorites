@@ -6,24 +6,31 @@
 	<script src="{% static 'js/tinder.js' %}"></script>
 {% endblock %}
 
+{% block nav %}
 
+{% endblock %}
 {% block content %}
-<input type=search name=s id="relatedMovieSearchInput"  >
-<button id="relatedMovieSearch" class="btn btn-default btn-lg">
-    Find Related Movies
-</button>
-<button id="showFavorites" class="btn btn-default btn-lg">Show Favorites</button>
+<span class="navbar-form navbar-left" role="search">
+  <div class="form-group">
+    <input type=search class="form-control" placeholder="Find Related" id="relatedMovieSearchInput" >
+  </div>
+  <button type="submit" id="relatedMovieSearch" class="btn btn-default navbar-btn btn-lg">Find Related Movies</button>
+<button type="button" id="showFavorites"  class="btn btn-default navbar-btn btn-lg">Show Favorites</button>
 
+</span>
+    </nav>
+<br>
+
+
+{#<input type=search name=s id="relatedMovieSearchInput"  >#}
+{#<button id="relatedMovieSearch" class="btn btn-default btn-lg">#}
+{#    Find Related Movies#}
+{#</button>#}
+{#<button id="showFavorites" class="btn btn-default btn-lg">Show Favorites</button>#}
+{##}
 <div id='relatedMovies' class="movieInfoContainer"></div>
 
 
-    <div id="favoriteBox">
-            <hr>
-<h2>Favorites</h2>
-{% for fave in favorites %}
-    {% include 'movie_template.html' with movie_info=fave %}
-{% endfor %}
-</div>
 
 
 {% endblock %}

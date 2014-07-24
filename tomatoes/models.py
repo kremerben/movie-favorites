@@ -26,3 +26,10 @@ class Actor(models.Model):
 
     def __unicode__(self):
         return self.name
+
+class Character(models.Model):
+    name = models.CharField(max_length=120)
+    actor = models.ForeignKey(Actor, null=True, blank=True, related_name='actor')
+
+    def __unicode__(self):
+        return self.name

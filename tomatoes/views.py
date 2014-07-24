@@ -41,7 +41,8 @@ def new_movie(request):
             'mpaa_rating': data['mpaa_rating'],
             'index': data['index'],
             'synopsis': data['synopsis'],
-            'runtime': runtime
+            'runtime': runtime,
+            'actors': data['actors']
             },
         }
         # movie_info = [movie_info]
