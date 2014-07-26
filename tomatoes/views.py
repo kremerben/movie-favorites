@@ -20,6 +20,12 @@ def tinder(request):
     }
     return render(request, 'tinder.html', data)
 
+def theater(request):
+    favorites = Movie.objects.all()
+    data = {
+        'favorites': favorites,
+    }
+    return render(request, 'theater.html', data)
 
 @csrf_exempt
 def new_movie(request):
@@ -48,6 +54,36 @@ def new_movie(request):
         # movie_info = [movie_info]
         # return HttpResponse(json.dumps(movie_info), content_type='application/json')
         return render_to_response('movie_template.html', movie_info)
+
+@csrf_exempt
+def small_new_movie(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        if data['runtime'] == "":
+            runtime = 10
+        else:
+            runtime = data['runtime']
+        poster = data['poster'].replace('tmb', 'det')
+        movie_info = {
+            'movie_info': {
+            'title': data['title'],
+            'rt_id': data['rt_id'],
+            'release_year': data['release_year'],
+            'critic_rating': data['critic_rating'],
+            'audience_score': data['audience_score'],
+            'poster': poster,
+            'mpaa_rating': data['mpaa_rating'],
+            'index': data['index'],
+            'synopsis': data['synopsis'],
+            'runtime': runtime,
+            'actors': data['actors']
+            },
+        }
+        # movie_info = [movie_info]
+        # return HttpResponse(json.dumps(movie_info), content_type='application/json')
+        return render_to_response('theater_movie_template.html', movie_info)
+
+
 
 
 @csrf_exempt

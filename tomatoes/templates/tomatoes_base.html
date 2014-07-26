@@ -10,13 +10,17 @@
     <title>{%  block title %}{% endblock %}Rotten Potatoes</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet/less" type="text/css" href="{% static 'css/index.less'%}" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/1.7.3/less.min.js"></script>
     <link href='http://fonts.googleapis.com/css?family=Rokkitt:400,700' rel='stylesheet' type='text/css'>{#    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" />#}
     {#    <script src="{% static 'js/jquery-1.11.1.js' %}"></script>#}
     <link rel="stylesheet" href="{% static 'css/index.css' %}" type="text/css"  />
     {#	<script src="{% static 'js/ajax_get_index.js' %}"></script>#}
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script src="{% static 'js/index.js' %}"></script>
+    <script src="{% static 'js/jquery.zaccordion.min.js' %}"></script>
 
 
 {% block head %}{% endblock %}
@@ -26,6 +30,7 @@
     <nav class="navbar navbar-default ">
         <a class="navbar-brand" href="/"> Search</a>
         <a class="navbar-brand" href="{% url "tinder" %}"> Similar Movies</a>
+        <a class="navbar-brand" href="{% url "theater" %}"> Movie Theater</a>
 {% block nav %}
             {#<input type=search name=s id="searchBox"  >#}
         <span class="navbar-form navbar-left" role="search">
@@ -45,7 +50,7 @@
         <div class="row">
             <div id="gotTheMovie" class="col-md-3"><button id="multi-save">Multi-Save</button></div>
         </div>
-        <div class="movieInfoContainer"></div>
+        <div class="movieInfoContainer" id="slideshow"> </div>
 
 
     {% endblock %}

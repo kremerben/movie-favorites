@@ -73,6 +73,7 @@ button {
 
 .movie_thumb {
     text-align: center;
+    margin: 0 auto 0 42px;
 }
 
 .synopsis {
@@ -112,4 +113,16 @@ button {
     padding: 29px 15px 20px;
     font-size: 23px;
     line-height: 23px;
+}
+
+.smallMovieInfo {
+    text-align: center;
+    margin-right: 32px !important;
+width: 180px;
+float: left;
+}
+
+.smallMovieInfo:last-child {
+    /*text-align: center;*/
+    margin-right: 0px;
 }

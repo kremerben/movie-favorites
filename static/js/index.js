@@ -217,7 +217,14 @@ $('#saveMovie').on('click', function() {
 
 
 
-
+$(document).ready(function() {
+	$("#slideshow").zAccordion({
+		width: 700,
+		height: 310,
+		tabWidth: 100,
+		invert: true
+	});
+});
 
 
 });
